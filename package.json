@@ -34,6 +34,8 @@
     "postcss-scss": "^0.1.3",
     "precss": "^1.3.0",
     "typings":"^0.6.8",
-    "tsd": "^0.6.5-beta"
+    "tsd": "^0.6.5-beta",
+    "lite-server": "^2.0.1",
+    "typescript": "^1.8.2"
   }
 }
