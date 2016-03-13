@@ -11,7 +11,7 @@ import {Component} from "angular2/core";
             <br/>
             <br/>
             Is it Awesome ?
-            <input type="text" #inputElement (keyup)="0">
+            <input type="text" #inputElement (keyup)="0"/>
         </p>
     `,
     //styles:[],
