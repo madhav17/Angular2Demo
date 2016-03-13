@@ -1,6 +1,5 @@
 <html>
 <head>
-    <base href="/">
     <title>Angular 2 Boilerplate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Load libraries -->
@@ -16,21 +15,24 @@
 
 
     <link rel="stylesheet" href="src/css/app.css">
+    <base href="/">
+
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('app/boot')
+                .then(null, console.error.bind(console));
+    </script>
 </head>
 <body>
-<my-app>Loading...</my-app>
+<app>Loading...</app>
 
-<script>
-    System.config({
-        packages: {
-            app: {
-                format: 'register',
-                defaultExtension: 'js'
-            }
-        }
-    });
-    System.import('app/boot')
-            .then(null, console.error.bind(console));
-</script>
+
 </body>
 </html>
