@@ -1,15 +1,17 @@
-import {Component} from 'angular2/core';
-import {MyComponentComponent} from "./my-component.component";
+import {Component} from "angular2/core";
+import {MyPuzzle} from "./puzzle/puzzle.component";
 
 @Component({
-    selector: 'app',
-    template: `
-        <h1>Angular 2 Boilerplate</h1>
-        <p>Hello World! gf</p>
-        <my-app></my-app>
+
+    selector : "app",
+    template : `
+        <h1> Root Component </h1>
+        <my-puzzle></my-puzzle>
     `,
-    directives : [MyComponentComponent]
+    directives:[MyPuzzle]
+
 })
-export class AppComponent {
+
+export class AppComponent{
 
 }
