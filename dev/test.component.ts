@@ -5,7 +5,7 @@ import {Component} from 'angular2/core';
 
     selector : 'test',
     templateUrl : 'templates/ts.tpl.html'
-//    keep space while giving the name of external files
+//    keep space in mind while giving the name of external files
 })
 
 
