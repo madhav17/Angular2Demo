@@ -54,7 +54,7 @@ import {OnInit} from "angular2/core";
             <input type="text" #switch4 (keyup) = "0"/>
         </section>
 
-        <h2 [hidden] = "!(switch1.value == switch1No && switch2.value == switch2No && switch3.value == switch3No && switch4.value == switch4No)">Congratz {{name.value}} you got it !</h2>
+        <h2 [hidden] = "!(switch1.value == switch1No && switch2.value == switch2No && switch3.value == switch3No && switch4.value == switch4No)">Congratz {{name.value}} {{switch1No}}you got it !</h2>
     `
 })
 
