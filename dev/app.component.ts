@@ -1,38 +1,33 @@
 import {Component} from "angular2/core";
+import {PropertyBindComponent} from "./property-bind.component";
 
 @Component({
 
     selector: "app",
     template: `
-        {{onTest()}}
-        <br/>
-        <input type="text"  [value]="name" (keyup) = "onKeyUp(inputElement.value)" #inputElement/>
-        <p>{{values}}</p>
-        <br/>
-        <br/>
+    <section class="parent">
+        <h1>Parent Component</h1>
+        <h4>Please Enter your Name</h4>
         <input type="text" [(ngModel)]="name">
-        <p>Your Name : {{name}} </p>
-        <br/>
-        <br/>
-        <!--One Way Binding-->
-        <input type="text" [value]="name" #input1 (keyup)="0">
-        <p>One Way : {{input1.value}}</p>
+        <br/><br/>
+        <h4>Please Enter your Address</h4>
+        <input type="text" [(ngModel)]="address">
+
+    <br/><br/><br/>
+    <!--<p>{{name}}</p>-->
+    <section class="child">
+        <!--<my-prop-bind [myName]="name"></my-prop-bind>-->
+        <my-prop-bind [myName]="name" [myAge]="25" [myAddress]="address" [pinCode]="110092"></my-prop-bind>
+    </section>
+    </section>
+
 
     `,
-
+    directives: [PropertyBindComponent]
 })
 
 export class AppComponent {
-    name = "Maddy";
-    values:string = " ";
-    //values : string;
 
-    onTest():boolean {
-        return 1 == 1;
-    }
-
-    onKeyUp(value:String) {
-        if (value)
-            this.values += value + " | ";
-    }
+    name:string = '';
+    address:string = '';
 }
