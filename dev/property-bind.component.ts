@@ -19,7 +19,6 @@ import {Input} from "angular2/core";
 
 export class PropertyBindComponent{
     //standard : property should be same
-    myName : string="";
     @Input("myAge") age : number = 20;
     hobbiesChanged : EventEmitter<string> = new EventEmitter<string>();
 
