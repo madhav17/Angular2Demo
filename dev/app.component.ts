@@ -1,47 +1,37 @@
 import {Component} from "angular2/core";
-import {PropertyBindComponent} from "./property-bind.component";
+import {InputComponent} from "./bindings/input.component";
+import {ConfirmedComponent} from "./bindings/confirmed.component";
 
 @Component({
 
     selector: "app",
     template: `
-    <section class="parent">
-    <h1>Your Details, please</h1>
-    Your Name
-    <input type="text" #inputName (keyup)="0">
-    <br/><br/>
-    Your Age
-    <input type="text" #inputAge (keyup)="0">
-    <br/><br/>
-    <input type="button" value="Submit" #submitButton [disabled]="isDisabled(inputName.value,inputAge.value)" (click)="setClick()">
-    </section>
+    <div class="container">
+        <my-input (submitted)="onSubmit($event)" [myself]="confirmedMyself"></my-input>
+    </div>
 
-    <br/><br/>
-    <br/><br/>
-    <section class="parent">
-        <my-prop-bind [myName]="getClick() ? inputName.value : '' " [myAge]="getClick() ? inputAge.value : '' "></my-prop-bind>
-    </section>
+    <div class="container">
+    <my-confirm (confirmed)="onConfirm($event)" [myself]="myself"></my-confirm>
+    </div>
 
 
     `,
-    directives: [PropertyBindComponent]
+
+    directives:[InputComponent,ConfirmedComponent]
 })
 
 export class AppComponent {
 
-    name:string = '';
-    hobbies:string = '';
-    fetchClick : boolean = false;
+    myself = {name : '',age : ''};
+    confirmedMyself = {name : '',age : ''};
 
-    isDisabled(name:string,age:string):boolean{
-        return (name && age)?false:true;
+    onSubmit(myself : {name:string,age : string}){
+        //this.myself = myself; // will give 2 way data binding
+        this.myself = {name : myself.name,age : myself.age};
     }
 
-    setClick():void{
-        this.fetchClick = !this.fetchClick;
-    }
-
-    getClick() : boolean {
-        return this.fetchClick;
+    onConfirm(myself : {name:string,age : string}){
+        //this.confirmedMyself  = myself;  // will give 2 way data binding
+        this.confirmedMyself  = {name : myself.name,age : myself.age};
     }
 }
