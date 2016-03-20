@@ -1,4 +1,4 @@
-import {Component} from "angular2/core"
+import {Component,EventEmitter} from "angular2/core"
 import {Input} from "angular2/core";
 
 @Component({
@@ -6,22 +6,24 @@ import {Input} from "angular2/core";
     selector : "my-prop-bind",
     template : `
         <h3>Property Binding</h3>
-        <p>Hello {{myName}}</p>
         <p>Hello {{name}}</p>
-        <p>Age {{myAge}}</p>
-        <p>Address {{address}}</p>
-        <!--Now it won't work becoz we have created alias-->
-        <p>Address {{myAddress}}</p>
-        <p>Pincode {{code}}</p>
-    `,
-    inputs:['myName',"myAge","address : myAddress"]
+        <p>Age {{age}}</p>
+        <h4>My Hobbiess are : </h4>
+        <input type="text" (keyup)="onHobbiesChanged(hobbies.value)" #hobbies>
+        <!--<input type="text" (keyup)="onHobbiesChanged($event.target.value)">-->
+    `, 
+    inputs:['name : myName'],
+    // properties exposing as output as event
+    outputs : ['hobbiesChanged']
 })
 
 export class PropertyBindComponent{
     //standard : property should be same
     myName : string="";
-    name : string = "Maddy";
-    myAge : number = 20;
-    address : string = "";
-    @Input("pinCode") code : string='';
+    @Input("myAge") age : number = 20;
+    hobbiesChanged : EventEmitter<string> = new EventEmitter<string>();
+
+    onHobbiesChanged(hobbies : string) : void{
+        this.hobbiesChanged.emit(hobbies);
+    }
 }
