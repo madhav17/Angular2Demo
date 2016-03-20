@@ -19,7 +19,6 @@ import {Input} from "angular2/core";
 
 export class PropertyBindComponent{
     //standard : property name should be same
-    myName : string="";
     name : string = "Maddy";
     myAge : number = 20;
     address : string = "";
