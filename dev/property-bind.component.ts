@@ -10,6 +10,7 @@ import {Input} from "angular2/core";
         <p>Age {{age}}</p>
         <h4>My Hobbiess are : </h4>
         <input type="text" (keyup)="onHobbiesChanged(hobbies.value)" #hobbies>
+        <input type="text" (keyup)="onTest($event.target.value)">
         <!--<input type="text" (keyup)="onHobbiesChanged($event.target.value)">-->
     `, 
     inputs:['name : myName'],
@@ -24,5 +25,9 @@ export class PropertyBindComponent{
 
     onHobbiesChanged(hobbies : string) : void{
         this.hobbiesChanged.emit(hobbies);
+    }
+
+    onTest(value :string) : void {
+        console.log(value);
     }
 }
