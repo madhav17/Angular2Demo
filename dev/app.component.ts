@@ -6,37 +6,25 @@ import {Component} from "angular2/core";
     template: `
         {{onTest()}}
         <br/>
-        <input type="text" value="{{name}}" />
+        <input type="text"   (keyup) = "onKeyUp(inputElement.value)" #inputElement/>
+        <p>{{values}}</p>
         <br/>
-        <input type="text" value="{{name}}" class="{{'red'}}"/>
-        <br/>
-
-        <!--similar to above-->
-        <input type="text" [value]= "name" class="{{'red'}}"/>
-        <br/>
-        <input type="text" [value]= "1==1" class="{{'red'}}"/>
-        <br/>
-        <!--[value] is not default html attribute but it is angular 2 property defined for input tag    -->
-
-        <!--with directive-->
-        <input type="text" [value]= "1==1" [ngClass] = "'red'"/>
-        <br/>
-        <input type="text" [value]= "1==1" [ngClass] = "{red : true}"/>
-        <!--it is not attribute of html it as directive for angular 2-->
-        <br/>
-        <input type="text" [value]= "1==1" [ngClass] = "{red : true}" [disabled] = "1 == 1"/>
-        <br/>
-        <!--another form of using property binding-->
-        <!--<my-component [theValue]=""></my-component>-->
 
     `,
 
 })
 
 export class AppComponent {
-    name = "Maddy"
+    name = "Maddy";
+    values:string = " ";
+    //values : string;
 
     onTest():boolean {
         return 1 == 1;
+    }
+
+    onKeyUp(value:String) {
+        if (value)
+            this.values += value + " | ";
     }
 }
