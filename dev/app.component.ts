@@ -6,9 +6,12 @@ import {Component} from "angular2/core";
     template: `
         {{onTest()}}
         <br/>
-        <input type="text"   (keyup) = "onKeyUp(inputElement.value)" #inputElement/>
+        <input type="text"  [value]="name" (keyup) = "onKeyUp(inputElement.value)" #inputElement/>
         <p>{{values}}</p>
         <br/>
+        <br/>
+        <input type="text" [(ngModel)]="name">
+        <p>Your Name : {{name}} </p>
 
     `,
 
