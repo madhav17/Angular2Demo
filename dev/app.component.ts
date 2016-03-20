@@ -10,8 +10,8 @@ import {Component} from "angular2/core";
         <p>{{values}}</p>
         <br/>
         <br/>
-        <!--<input type="text" [(ngModel)]="name">-->
-        <!--<p>Your Name : {{name}} </p>-->
+        <input type="text" [(ngModel)]="name">
+        <p>Your Name : {{name}} </p>
         <br/>
         <br/>
         <!--One Way Binding-->
