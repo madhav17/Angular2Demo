@@ -6,17 +6,20 @@ import {PropertyBindComponent} from "./property-bind.component";
     selector: "app",
     template: `
     <section class="parent">
-        <h1>Parent Component</h1>
-        <h4>Please Enter your Name</h4>
-        <input type="text" [(ngModel)]="name">
-
-    <br/><br/><br/>
-    <!--<p>{{name}}</p>-->
-    <section class="child">
-        <!--<my-prop-bind [myName]="name"></my-prop-bind>-->
-        <my-prop-bind [myName]="name" [myAge]="25" (hobbiesChanged)= "hobbies = $event" ></my-prop-bind>
+    <h1>Your Details, please</h1>
+    Your Name
+    <input type="text" #inputName (keyup)="0">
+    <br/><br/>
+    Your Age
+    <input type="text" #inputAge (keyup)="0">
+    <br/><br/>
+    <input type="button" value="Submit" #submitButton [disabled]="isDisabled(inputName.value,inputAge.value)" (click)="setClick()">
     </section>
-    <p>My Hobbies are : {{hobbies}}  </p>
+
+    <br/><br/>
+    <br/><br/>
+    <section class="parent">
+        <my-prop-bind [myName]="getClick() ? inputName.value : '' " [myAge]="getClick() ? inputAge.value : '' "></my-prop-bind>
     </section>
 
 
@@ -28,4 +31,17 @@ export class AppComponent {
 
     name:string = '';
     hobbies:string = '';
+    fetchClick : boolean = false;
+
+    isDisabled(name:string,age:string):boolean{
+        return (name && age)?false:true;
+    }
+
+    setClick():void{
+        this.fetchClick = !this.fetchClick;
+    }
+
+    getClick() : boolean {
+        return this.fetchClick;
+    }
 }

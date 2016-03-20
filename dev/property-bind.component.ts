@@ -3,27 +3,27 @@ import {Input} from "angular2/core";
 
 @Component({
 
-    selector : "my-prop-bind",
-    template : `
-        <h3>Property Binding</h3>
-        <p>Hello {{name}}</p>
-        <p>Age {{age}}</p>
-        <h4>My Hobbiess are : </h4>
-        <input type="text" (keyup)="onHobbiesChanged(hobbies.value)" #hobbies>
-        <!--<input type="text" (keyup)="onHobbiesChanged($event.target.value)">-->
-    `, 
-    inputs:['name : myName'],
-    // properties exposing as output as event
-    outputs : ['hobbiesChanged']
+    selector: "my-prop-bind",
+    template: `
+
+    <h1>You submitted the following details is this correct ?</h1>
+    Your Name
+    <input type="text" value="{{name}}">
+    <br/><br/>
+    Your Age
+    <input type="text" value="{{age}}">
+    <br/><br/>
+    `,
+    //outputs : ['hobbiesChanged']
 })
 
-export class PropertyBindComponent{
+export class PropertyBindComponent {
     //standard : property should be same
-    myName : string="";
-    @Input("myAge") age : number = 20;
-    hobbiesChanged : EventEmitter<string> = new EventEmitter<string>();
-
-    onHobbiesChanged(hobbies : string) : void{
-        this.hobbiesChanged.emit(hobbies);
-    }
+    @Input("myName") name : string = '';
+    @Input("myAge") age : number;
+    //hobbiesChanged : EventEmitter<string> = new EventEmitter<string>();
+    //
+    //onHobbiesChanged(hobbies : string) : void{
+    //    this.hobbiesChanged.emit(hobbies);
+    //}
 }
