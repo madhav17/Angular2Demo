@@ -1,14 +1,14 @@
 import {Component} from "angular2/core";
-import {MyPuzzle} from "./puzzle/puzzle.component";
+import {AttributeDirectives} from "./attribute-driectives.component";
 
 @Component({
 
     selector : "app",
     template : `
         <h1> Root Component </h1>
-        <my-puzzle></my-puzzle>
+        <attr-directive></attr-directive>
     `,
-    directives:[MyPuzzle]
+    directives : [AttributeDirectives]
 
 })
 
