@@ -9,7 +9,7 @@ import {HighlightDirective} from "./highlight.directive";
 
 
         <div myHighlight [highlightColor]="'red'" [mouseOverColor]="'cyan'">
-        <!--This is used for binding multiple properties-->
+        <!--This is used for binding single property-->
         <!--<div [myHighlight]="'red'">-->
             Highlight Me
         </div>
