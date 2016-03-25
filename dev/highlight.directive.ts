@@ -6,7 +6,7 @@ import {Renderer} from "angular2/core";
 
 @Directive({
 
-    // this is name definition
+    // this is name definition of directive
     selector : '[myHighlight]',
 
 })
@@ -24,7 +24,7 @@ export class HighlightDirective implements  OnInit{
 
     ngOnInit():any {
         //this._elementRef.nativeElement.style.background = this._defaultColor;
-        //this._renderer.setElementStyle(this._elementRef, 'background' ,this._defaultColor);
+        //this._renderer.setElementStyle(this._elementRef, 'background-color' ,this._defaultColor);
         this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color' ,this._defaultColor);
     }
 
