@@ -4,18 +4,21 @@ import {HighlightDirective} from "./highlight.directive";
 
 @Component({
 
-    selector : 'attr-directive',
-    template : `
+    selector: 'attr-directive',
+    template: `
 
-        <div myHighlight>
+
+        <div myHighlight [highlightColor]="'red'" [mouseOverColor]="'cyan'">
+        <!--This is used for binding multiple properties-->
+        <!--<div [myHighlight]="'red'">-->
             Highlight Me
         </div>
         <br/><br/>
-        <div myHighlight>
+        <div myHighlight [highlightColor]="'blue'" [mouseOverColor]="'yellow'">
            Another Highlight Me
         </div>
     `,
-    directives : [HighlightDirective]
+    directives: [HighlightDirective]
 })
 
 

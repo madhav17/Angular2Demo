@@ -8,6 +8,17 @@ import {Renderer} from "angular2/core";
 
     // this is name definition of directive
     selector : '[myHighlight]',
+    //inputs : ['highlightColor : myHighlight'],
+
+     //becoz then we will not be able to bind it with square brackets
+    inputs : ['highlightColor','mouseOverColor'],
+
+    //host element can fire element and we can other things also
+    host:{
+        '(mouseenter)' : "onMouseEnter()",
+
+        '(mouseleave)' : "onMouseLeave()"
+    }
 
 })
 
@@ -16,6 +27,8 @@ export class HighlightDirective implements  OnInit{
     private _defaultColor:string = 'green';
     private _elementRef : ElementRef;
     private _renderer : Renderer;
+    highlightColor : string;
+    mouseOverColor : string;
 
     constructor(_elementRef: ElementRef,_renderer : Renderer){
         this._elementRef = _elementRef;
@@ -23,15 +36,19 @@ export class HighlightDirective implements  OnInit{
     }
 
     ngOnInit():any {
-        //this._elementRef.nativeElement.style.background = this._defaultColor;
-        //this._renderer.setElementStyle(this._elementRef, 'background-color' ,this._defaultColor);
-        this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color' ,this._defaultColor);
+        this.highLight(this.highlightColor || this._defaultColor);
     }
 
-/*
-*
-* Since beta.1 Renderer doesn't take an ElementRef anymore, but a nativeElement,
-* so your Renderer line adding the background color should look like this
-*
-* */
+    onMouseEnter():void {
+        this.highLight(this.mouseOverColor);
+    }
+
+    onMouseLeave() : void {
+        this.highLight(this.highlightColor || this._defaultColor);
+    }
+
+    highLight(color : string):void{
+        this._renderer.setElementStyle(this._elementRef.nativeElement, 'background-color' ,color);
+    }
+
 }
