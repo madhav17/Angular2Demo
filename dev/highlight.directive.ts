@@ -8,9 +8,10 @@ import {Renderer} from "angular2/core";
 
     // this is name definition of directive
     selector : '[myHighlight]',
+    //we are creating alias to bind it with single directive name as a property
     //inputs : ['highlightColor : myHighlight'],
 
-     //becoz then we will not be able to bind it with square brackets
+     //to bind multiple properties with directives
     inputs : ['highlightColor','mouseOverColor'],
 
     //host element can fire element and we can other things also
