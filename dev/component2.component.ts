@@ -1,53 +1,47 @@
 import {Component} from "angular2/core"
 import {LoggingService} from "./services/logging.service";
 import {CalculatorService} from "./services/calculator.service";
+import {DataService} from "./services/data.services";
 
 @Component({
 
     selector : 'component-2',
     template : `
     <div>
-        <h1>Logging Service</h1>
-        <input type="text"  #message>
-        <button (click)="onLog(message.value)">Send</button>
-    </div>
+        <h1>Data Service Comp 2</h1>
+        <button (click)="onGetData()">Get Some Data</button>
+        <p>{{data}}</p>
+        <br/><br>
+        <input type="text" #newData>
+        <button (click)="onInsert(newData.value)">Insert New Data</button>
 
-    <div>
-        <h1>Calculator Service</h1>
-        <p>Add or multiple these two number : </p>
-        <input type="text" #num1>
-        <input type="text" #num2>
-        <button (click)="onMultiply(num1.value,num2.value)">Multiply</button>
-        <button (click)="onAddition(num1.value,num2.value)">Add</button>
-        <br/><br/>
-        <p>Result : {{result}}</p>
     </div>
     `,
-    providers:[LoggingService,CalculatorService]
+    //providers:[LoggingService,CalculatorService,DataService] // 2 diff instance will be created
+    providers:[LoggingService,CalculatorService] // only 1 instance will be created
 })
 
 export class Component2Component{
 
     result : number;
+    data : string;
 
     private _loggingService : LoggingService;
     private _calculatorService : CalculatorService;
+    private _dataService : DataService;
 
-    constructor(_loggingService: LoggingService,_calculatorService : CalculatorService){
+    constructor(_loggingService: LoggingService,_calculatorService : CalculatorService,_dataService:DataService){
         this._loggingService = _loggingService;
         this._calculatorService = _calculatorService;
+        this._dataService = _dataService;
     }
 
-    onLog(message : string):void{
-        this._loggingService.log(message);
+    onGetData():void{
+        this.data = this._dataService.getRandomString()
     }
 
-    onMultiply(first:string,second : string) : void {
-        this.result = this._calculatorService.multiply(parseInt(first) , parseInt(second));
-    }
-
-    onAddition(first:string,second:string) : void {
-        this.result = this._calculatorService.addition(parseInt(first) , parseInt(second));
+    onInsert(value : string) : void{
+        this._dataService.insert(value);
     }
 
 }

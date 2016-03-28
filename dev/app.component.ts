@@ -7,7 +7,6 @@ import {Component2Component} from "./component2.component";
     selector : "app",
     template : `
 
-       Hello
        <component-1></component-1>
        <br/>
        <br/>
