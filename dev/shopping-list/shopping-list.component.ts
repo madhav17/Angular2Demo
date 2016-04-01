@@ -1,7 +1,8 @@
-import {Component} from "angular2/core"
+import {Component,OnInit} from "angular2/core"
 import {ShoppingListNewItemComponent} from "./shopping-new-item.component";
 import {ListItem} from "../list-item";
 import {ShoppingListItemComponent} from "./shopping-list-item.component";
+import {MyShoppingListService} from "./shopping-list.service";
 
 @Component({
 
@@ -9,7 +10,7 @@ import {ShoppingListItemComponent} from "./shopping-list-item.component";
     template :`
 
         <section>
-           <shopping-list-new-item (itemAdded)="onItemAdded($event)"></shopping-list-new-item>
+           <shopping-list-new-item></shopping-list-new-item>
         </section>
 
         <section>
@@ -29,31 +30,35 @@ import {ShoppingListItemComponent} from "./shopping-list-item.component";
         <section *ngIf = "selectedItem != null">
 
             <h3>Edt Item</h3>
-            <shopping-list-item [item]="selectedItem" (removed)="onRemove($event)"></shopping-list-item>
+            <shopping-list-item [item]="selectedItem" (removed)="onRemove()"></shopping-list-item>
         </section>
     `,
-    directives :[ShoppingListNewItemComponent,ShoppingListItemComponent]
+    directives :[ShoppingListNewItemComponent,ShoppingListItemComponent],
+    providers:[MyShoppingListService]
 })
 
-export class ShoppingListComponent{
+export class ShoppingListComponent implements OnInit{
 
-    listItems  = new Array<ListItem>();
-
-    //selectedItem: {name : string,amount:number};
+    listItems : Array<ListItem>;
     selectedItem: ListItem;
 
-    onItemAdded(item : ListItem) : void{
+    private _myShoppingListService : MyShoppingListService;
 
-         //this.listItems.push(item);// here we face databinding problem becoz it is containing the reference of 2 way binding
-         this.listItems.push({name : item.name,amount : item.amount});
+    constructor(_myShoppingListService : MyShoppingListService){
+        this._myShoppingListService = _myShoppingListService;
     }
+
+    ngOnInit():any {
+        this.listItems = this._myShoppingListService.getItems()
+    }
+
 
     onSelect(item : ListItem) : void {
         this.selectedItem = item;
     }
 
-    onRemove(item : ListItem):void{
-        this.listItems.splice(this.listItems.indexOf(item),1);
+    onRemove():void{
         this.selectedItem = null;
     }
+
 }
